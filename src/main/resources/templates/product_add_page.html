@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new product</title>
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<div class="container-fluid" style="margin-top: 50px; width: 60vh;">
+    <h1 class="h3 mb-3 font-weight-normal">Add your product for sale!</h1>
+    <form th:action="@{/products}" method="post" th:object="${product}">
+        <label for="type"> Type :</label>
+        <input th:field="*{type}" id="type" name="type" type="text" style="margin-bottom: 15px;" required class="form-control">
+        <label for="name"> Name :</label>
+        <input th:field="*{name}" id="name" name="type" type="text" required class="form-control">
+        <input type="submit" style="background-color: mediumseagreen; margin-top: 35px;" value="add" class="btn btn-primary btn-block"/>
+    </form>
+</div>
+</body>
+</html>

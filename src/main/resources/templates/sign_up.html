@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up </title>
+</head>
+<body>
+<div th:insert="header :: header"></div>
+
+<div class="container-fluid" style="margin-top: 50px; width: 60vh;">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+    <form th:action="@{/signUp}" th:method="post" th:object="${signUpDto}">
+        <div class="form-group">
+            <label for="firstName"> First name : </label>
+            <input th:field="*{firstName}" type="text" name="firstName" id="firstName" class="form-control" required
+                   placeholder="enter name"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName"> Last name :</label>
+            <input th:field="*{lastName}" id="lastName" type="text" name="lastName" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="username"> username :</label>
+            <input th:field="*{username}" type="text" name="username" id="username" required class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="email"> Email :</label>
+            <input th:field="*{email}" type="email" name="password" id="email" required class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="password"> Password:</label>
+            <input th:field="*{password}" type="password" name="password" id="password" required class="form-control"/>
+        </div>
+        <input type="submit" style="background-color: mediumseagreen" value="Sign Up" class="btn btn-lg btn-primary btn-block"/>
+    </form>
+</div>
+</body>
+</html>

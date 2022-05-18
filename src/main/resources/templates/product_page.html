@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:href="@{/static/scripts.js}" src="../static/scripts.js"></script>
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<div>
+    <span hidden id="productId" th:text="${product.id}"></span>
+    <span th:text="${product.type}"></span>
+    <a th:href="@{/accounts/{id}}">
+        <span th:text="${product.user.id}"> PA </span>
+    </a>
+</div>
+</body>
+</html>

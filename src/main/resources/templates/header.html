@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment="header">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/products" th:text="products"></a>
+                <a class="nav-item nav-link" href="/products/add" th:text="addproduct"></a>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+        <div sec:authorize="isAnonymous()">
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="${isAnonymous()}" th:if="${#authentication?.isAuthenticated()}">
+                    <a href="/signUp" class="nav-item nav-link">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span th:text="SignUp"> </span>
+                    </a>
+                </li>
+                <li sec:authorize="${isAnonymous()}" th:if="${#authentication?.isAuthenticated()}">
+                    <a href="/signIn" class="nav-item nav-link">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        <span th:text="SignIn"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div sec:authorize="isFullyAuthenticated()">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item nav-link" th:if="${#authentication?.isAuthenticated()}">
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem" class="nav-item nav-link">
+                        <span th:text="Logout"></span> (<span th:text="${#authentication.getName()}"></span>)
+                    </a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input hidden type="submit" value="Sign Out"/>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
