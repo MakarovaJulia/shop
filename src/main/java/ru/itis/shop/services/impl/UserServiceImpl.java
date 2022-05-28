@@ -121,49 +121,6 @@ public class UserServiceImpl implements UserService {
     }
 
 //    @Override
-//    public void transfer(String username, TransferDto transferDto) {
-//        Optional<User> senderOptional = userRepository.findUserByUsername(username);
-//        Optional<User> receiverOptional = userRepository.findById(transferDto.getUserId());
-//        if (senderOptional.isEmpty()) {
-//            throw new IllegalArgumentException("No user with username = " + username);
-//        }
-//        if (receiverOptional.isEmpty()) {
-//            throw new IllegalArgumentException("No user with id = " + transferDto.getUserId());
-//        }
-//        User sender = senderOptional.get();
-//        User receiver = receiverOptional.get();
-//
-//        Optional<Product> senderProductOptional = productRepository.findById(transferDto.getCardFromId());
-//        Optional<Product> receiverProductOptional = productRepository.findById(transferDto.getCardToId());
-//        if (senderProductOptional.isEmpty()) {
-//            throw new IllegalArgumentException("bad from_card_id = " + transferDto.getCardFromId());
-//        }
-//        if (receiverProductOptional.isEmpty()) {
-//            throw new IllegalArgumentException("bad to_card_id = " + transferDto.getCardFromId());
-//        }
-//        Product senderProduct = senderProductOptional.get();
-//        Product receiverProduct = receiverProductOptional.get();
-//        if (!senderProduct.getPersonalAccount().getOwner().equals(sender)) {
-//            throw new IllegalArgumentException("Not owning card with id = " + transferDto.getCardToId());
-//        }
-//        if (!receiverProduct.getPersonalAccount().getOwner().equals(receiver)) {
-//            throw new IllegalArgumentException("User with id = " + transferDto.getUserId()
-//                    + " not owning card with id = " + transferDto.getCardToId());
-//        }
-//        if (senderProduct.getType().getName().equals("CREDIT") && minAmountOfCreditCard > (senderProduct.getAmount() - transferDto.getAmount())) {
-//            throw new IllegalArgumentException("Reached max credit");
-//        }
-//        if (senderProduct.getType().getName().equals("DEBIT") && 0 > (senderProduct.getAmount() - transferDto.getAmount())) {
-//            throw new IllegalArgumentException("Not enough money");
-//        }
-//
-//        senderProduct.setAmount(senderProduct.getAmount() - transferDto.getAmount());
-//        receiverProduct.setAmount(receiverProduct.getAmount() + transferDto.getAmount());
-//        productRepository.save(senderProduct);
-//        productRepository.save(receiverProduct);
-//    }
-
-//    @Override
 //    public Long getProductsCount(String username) {
 //        return userRepository.getProductsCount(username);
 //    }

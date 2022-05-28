@@ -12,9 +12,12 @@
 <div>
     <span hidden id="productId" th:text="${product.id}"></span>
     <span th:text="${product.type}"></span>
-    <a th:href="@{/accounts/{id}}">
-        <span th:text="${product.user.id}"> PA </span>
-    </a>
+<!--    <button th:action="@{/products/{id}(id=${product.id})}" th:method="post">Order</button>-->
+    <form th:action="@{/{id}(id=${product.id})}" class="form-center-content" method="post">
+        <label>
+            <input type="submit" name="order">Заказать</input>
+        </label>
+    </form>
 </div>
 </body>
 </html>

@@ -21,9 +21,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${remember-me-key}")
-    private String rememberMeKey;
-
     public WebSecurityConfiguration(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService,
                                     PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
@@ -32,11 +29,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/static/**", "js/**").permitAll()
-                .and()
-                .rememberMe().key(rememberMeKey).rememberMeParameter("remember-me");
-
         http.formLogin()
                 .loginPage("/signIn")
                 .defaultSuccessUrl("/products")
@@ -46,7 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/signUp").anonymous()
-                .antMatchers("/**").permitAll();
+                .anyRequest().authenticated();
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/signIn");

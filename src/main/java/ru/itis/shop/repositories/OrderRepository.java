@@ -6,19 +6,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.itis.shop.models.Order;
 import ru.itis.shop.models.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    Optional<User> findUserByUsername(String username);
+    List<Order> findAllByUser(Optional<User> user);
 
-    Optional<User> findUserByConfirmCode(String confirmCode);
-
-    @Transactional
-    @Modifying
-    @Query("update User user set user.state= :state")
-    void updateUserState(@Param(value = "state") User.State state);
+//    @Transactional
+//    @Modifying
+//    @Query("update Order order set order.state= :state")
+//    void updateOrderState(@Param(value = "state") Order.State state);
 }

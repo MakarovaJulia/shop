@@ -20,12 +20,12 @@ public class Product {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "price")
+    private Long price;
+
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @Column(name = "amount")
-    private double amount;
 
     @ManyToOne
     @JoinColumn(name = "type_id", nullable = false)

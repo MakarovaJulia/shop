@@ -17,8 +17,6 @@ public interface UserService {
 
     UserDto deleteUserById(Long userId, String username);
 
-//    void transfer(String username, TransferDto transferDto);
-//
 //    Long getProductsCount(String username);
 //
 //    Double getProductsAmount(String username);

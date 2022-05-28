@@ -29,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
             return productMapper.map(productRepository.findAll());
     }
 
+
     @Override
     public ProductDto getProductById(Long productId) {
             Optional<Product> productOptional = productRepository.findById(productId);
@@ -45,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
             Product product = productMapper.map(productDto);
             product.setType(new Type(1L, "DEBET", "DEBET"));
             product.setName(productDto.getName());
+            product.setPrice(productDto.getPrice());
             product.setUser(userOptional.get());
             productRepository.save(product);
             return productMapper.map(product);

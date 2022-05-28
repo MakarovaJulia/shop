@@ -6,8 +6,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.itis.shop.dtos.OrderDto;
 import ru.itis.shop.dtos.ProductDto;
 import ru.itis.shop.security.UserDetailsImpl;
+import ru.itis.shop.services.OrderService;
 import ru.itis.shop.services.ProductService;
 import ru.itis.shop.services.UserService;
 import springfox.documentation.annotations.ApiIgnore;
@@ -18,6 +20,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @Profile("mvc")
 public class ProductController {
     private final ProductService productService;
+    private final OrderService orderService;
     private final UserService userService;
 
     @GetMapping
@@ -32,7 +35,6 @@ public class ProductController {
                                  @AuthenticationPrincipal UserDetailsImpl userDetails,
                                  Model model) {
         model.addAttribute("product", productService.getProductById(productId));
-        model.addAttribute("user", userService.getUserById(productService.getProductById(productId).getUser().getId()));
         return "product_page";
     }
 
@@ -42,7 +44,7 @@ public class ProductController {
         return "product_add_page";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String createProduct(@ModelAttribute ProductDto productDto,
                                 @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
         ProductDto productDto1 = productService.createProduct(productDto, userDetails.getUsername());
@@ -59,6 +61,13 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") Long productId,
                                 @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
         productService.deleteProduct(productId, userDetails.getUsername());
+        return "redirect:/";
+    }
+
+    @PostMapping("/{id}")
+    public String createOrder(@ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails,
+                              @ModelAttribute OrderDto orderDto, @PathVariable("id") Long productId) {
+        orderService.createOrder(orderDto, productId, userDetails.getUsername());
         return "redirect:/";
     }
 }

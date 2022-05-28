@@ -12,9 +12,9 @@ public class ProductDto {
 
     private String name;
 
+    private Long price;
+
     private UserDto user;
 
     private TypeDto type;
-
-    private double amount;
 }

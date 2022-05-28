@@ -17,12 +17,6 @@ import ru.itis.shop.services.UserService;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping
-    public String getUsersList(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
-        return "users_page";
-    }
-
     @GetMapping("/{id}")
     public String getUserById(@PathVariable("id") Long userId,
                               Model model) {

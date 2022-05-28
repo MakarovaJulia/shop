@@ -58,4 +58,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Product> products;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Order> orders;
 }
