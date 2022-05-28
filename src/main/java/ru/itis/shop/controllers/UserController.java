@@ -37,15 +37,4 @@ public class UserController {
         userService.deleteUserById(userId, userDetails.getUsername());
         return "redirect:/";
     }
-
-//    @GetMapping("/productsCount")
-//    public @ResponseBody Long getProductsCount(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        return userService.getProductsCount(userDetails.getUsername());
-//    }
-//
-//    @GetMapping("/productsAmount")
-//    public @ResponseBody Double getProductsAmount(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        return userService.getProductsAmount(userDetails.getUsername());
-//    }
-
 }

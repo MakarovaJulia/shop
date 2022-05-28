@@ -16,9 +16,4 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findAllByUser(Optional<User> user);
-
-//    @Transactional
-//    @Modifying
-//    @Query("update Order order set order.state= :state")
-//    void updateOrderState(@Param(value = "state") Order.State state);
 }

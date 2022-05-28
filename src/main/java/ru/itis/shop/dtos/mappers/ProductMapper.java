@@ -10,7 +10,6 @@ import java.util.Set;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-//    @Mapping(target = "user", ignore = true)
     Product map(ProductDto productDto);
 
     @Mapping(target = "user", ignore = true)

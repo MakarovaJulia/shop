@@ -24,15 +24,13 @@ public class ProductController {
     private final UserService userService;
 
     @GetMapping
-    public String getAllProducts(Model model,
-                                 @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String getAllProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         return "products_page";
     }
 
     @GetMapping("/{id}")
     public String getProductById(@PathVariable("id") Long productId,
-                                 @AuthenticationPrincipal UserDetailsImpl userDetails,
                                  Model model) {
         model.addAttribute("product", productService.getProductById(productId));
         return "product_page";
@@ -46,26 +44,26 @@ public class ProductController {
 
     @PostMapping("/add")
     public String createProduct(@ModelAttribute ProductDto productDto,
-                                @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
         ProductDto productDto1 = productService.createProduct(productDto, userDetails.getUsername());
         return "redirect:/products/" + productDto1.getId();
     }
 
     @PutMapping
     public void updateProduct(@ModelAttribute ProductDto productDto,
-                              @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                              @AuthenticationPrincipal UserDetailsImpl userDetails) {
         productService.updateProduct(productDto, userDetails.getUsername());
     }
 
     @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable("id") Long productId,
-                                @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
         productService.deleteProduct(productId, userDetails.getUsername());
         return "redirect:/";
     }
 
     @PostMapping("/{id}")
-    public String createOrder(@ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails,
+    public String createOrder(@AuthenticationPrincipal UserDetailsImpl userDetails,
                               @ModelAttribute OrderDto orderDto, @PathVariable("id") Long productId) {
         orderService.createOrder(orderDto, productId, userDetails.getUsername());
         return "redirect:/";

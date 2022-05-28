@@ -35,11 +35,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/swagger-resources/**",
-                "/swagger-ui.html",
-                "/swagger-ui/**",
-                "/v2/api-docs",
-                "/webjars/**",
+        web.ignoring().antMatchers(
                 "/signIn",
                 "/signUp"
         );

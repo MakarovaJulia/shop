@@ -46,7 +46,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
                                             final FilterChain chain, final Authentication authResult)
             throws IOException, ServletException {
         SecurityContextHolder.getContext().setAuthentication(authResult);
-        this.getRememberMeServices().loginSuccess(request, response, authResult);
+        //this.getRememberMeServices().loginSuccess(request, response, authResult);
         if (this.eventPublisher != null) {
             eventPublisher.publishEvent(new InteractiveAuthenticationSuccessEvent(authResult, this.getClass()));
         }

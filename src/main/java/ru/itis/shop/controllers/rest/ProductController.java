@@ -20,19 +20,19 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto,
-                                                    @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(productService.createProduct(productDto, userDetails.getUsername()));
     }
 
     @PutMapping
     public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto,
-                                                    @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(productService.updateProduct(productDto, userDetails.getUsername()));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ProductDto> deleteProduct(@PathVariable("id") Long productId,
-                                                    @ApiIgnore @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(productService.deleteProduct(productId, userDetails.getUsername()));
     }
 }
