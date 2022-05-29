@@ -27,8 +27,6 @@ public class UserServiceImpl implements UserService {
     private final ProductRepository productRepository;
     @Value("${jwt.secret}")
     private String secret;
-    @Value("${cards.credit.min-amount}")
-    private Double minAmountOfCreditCard;
     private final EmailUtil emailUtil;
 
     @Override
