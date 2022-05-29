@@ -31,7 +31,7 @@ public class EmailUtil {
         MimeMessagePreparator preparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_RELATED,
                     StandardCharsets.UTF_8.name());
-            Template t = config.getTemplate("confirm_mail.ftlh");
+            Template t = config.getTemplate("confirm_mail.html");
             String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
 
             messageHelper.setSubject(subject);

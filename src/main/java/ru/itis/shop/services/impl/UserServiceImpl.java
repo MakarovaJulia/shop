@@ -120,16 +120,6 @@ public class UserServiceImpl implements UserService {
         throw new IllegalArgumentException("bad user id = " + userId);
     }
 
-//    @Override
-//    public Long getProductsCount(String username) {
-//        return userRepository.getProductsCount(username);
-//    }
-//
-//    @Override
-//    public Double getProductsAmount(String username) {
-//        return userRepository.getProductsAmount(username);
-//    }
-
     @Override
     public void confirmUserAccount(String confirmationCode) {
         Optional<User> account = userRepository.findUserByConfirmCode(confirmationCode);
